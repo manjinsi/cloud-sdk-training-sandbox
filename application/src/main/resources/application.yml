@@ -1,0 +1,4 @@
+server:
+  port: 8080
+
+#destinations: '[{"name"="ErpQueryEndpoint", "url"="http://localhost:3000"}]'
