@@ -50,7 +50,7 @@ public class BusinessPartnerController {
         Destination destination = DestinationAccessor.getDestination("ErpQueryEndpoint");
         
         // TODO: Task 1 - Retrieve a list of business partners
-//        partners = service.getAllBusinessPartner().execute(destination.asHttp());
+        partners = service.getAllBusinessPartner().execute(destination.asHttp());
 
         // TODO Task 2 - Add caching support to the call. Cache the data for 5 minutes.
         // Hint: com.sap.cloud.sdk.cloudplatform.resilience.ResilienceDecorator might help 
@@ -70,19 +70,19 @@ public class BusinessPartnerController {
 
         
         // TODO Task 4 - Select just the id, first and last name of the business partners, filter them by category = '1' and order them by last name ascending
-        ResilienceConfiguration resilienceConfiguration = ResilienceConfiguration.of(BusinessPartnerService.class)
-                .cacheConfiguration(CacheConfiguration.of(Duration.ofMinutes(5)).withoutParameters())
-                .circuitBreakerConfiguration(CircuitBreakerConfiguration.of().waitDuration(Duration.ofSeconds(30)));
-
-        partners = ResilienceDecorator.executeCallable(
-                 () -> service.getAllBusinessPartner()
-                     .select(BusinessPartner.BUSINESS_PARTNER,
-                             BusinessPartner.LAST_NAME,
-                             BusinessPartner.FIRST_NAME)
-                     .filter(BusinessPartner.BUSINESS_PARTNER_CATEGORY.eq(CATEGORY_PERSON))
-                     .orderBy(BusinessPartner.LAST_NAME, Order.ASC)
-                     .execute(destination.asHttp()),
-                 resilienceConfiguration);
+//        ResilienceConfiguration resilienceConfiguration = ResilienceConfiguration.of(BusinessPartnerService.class)
+//                .cacheConfiguration(CacheConfiguration.of(Duration.ofMinutes(5)).withoutParameters())
+//                .circuitBreakerConfiguration(CircuitBreakerConfiguration.of().waitDuration(Duration.ofSeconds(30)));
+//
+//        partners = ResilienceDecorator.executeCallable(
+//                 () -> service.getAllBusinessPartner()
+//                     .select(BusinessPartner.BUSINESS_PARTNER,
+//                             BusinessPartner.LAST_NAME,
+//                             BusinessPartner.FIRST_NAME)
+//                     .filter(BusinessPartner.BUSINESS_PARTNER_CATEGORY.eq(CATEGORY_PERSON))
+//                     .orderBy(BusinessPartner.LAST_NAME, Order.ASC)
+//                     .execute(destination.asHttp()),
+//                 resilienceConfiguration);
         
         // TODO Task 5 Remove the throws definition from the method and handle the exceptions with io.vavr.control.Try
 //        partners = Try.of(

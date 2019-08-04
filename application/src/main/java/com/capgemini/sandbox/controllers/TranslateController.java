@@ -1,39 +1,35 @@
 package com.capgemini.sandbox.controllers;
 
-import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.common.collect.Lists;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import com.sap.cloud.sdk.cloudplatform.logging.CloudLoggerFactory;
 
 @RestController
 @RequestMapping("/api/translate")
-public class TranslateServlet {
+public class TranslateController {
 
-    private static final Logger logger = CloudLoggerFactory.getLogger(TranslateServlet.class);
+    private static final Logger logger = LoggerFactory.getLogger(TranslateController.class);
 
     private static final String TRANSLATION_PATH = "translation/translation";
 
-    protected void doGet(final HttpServletRequest request, final HttpServletResponse response)
-            throws ServletException, IOException {
+    public ResponseEntity<Object> translate(@RequestParam String input) throws Exception {
 
         try {
             String targetLang = "en";
             String sourceLang = "de";
-            String source = request.getParameter("input");
 
-            String requestJson = createRequestJson(sourceLang, targetLang, source);
+            String requestJson = createRequestJson(sourceLang, targetLang, input);
 
             // Prepare HttpPost query to translate "input"
             // TODO 1. Get the Destination object from the SCP destination configuration
@@ -92,11 +88,9 @@ public class TranslateServlet {
 
         } catch (Exception e) {
             logger.error("Failure: " + e.getMessage(), e);
-
-            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-            response.getWriter().println("Error: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error: " + e.getMessage());
         }
-
+        return ResponseEntity.ok().build();
     }
 
     static String parseResponse(String response) {
@@ -121,7 +115,7 @@ public class TranslateServlet {
             return units;
         }
 
-        private void setUnits(final List<TranslationUnit> units) {
+        private void setUnits(List<TranslationUnit> units) {
             this.units = units;
         }
     }
@@ -134,7 +128,7 @@ public class TranslateServlet {
             return value;
         }
 
-        private void setValue(final String value) {
+        private void setValue(String value) {
             this.value = value;
         }
 
@@ -142,7 +136,7 @@ public class TranslateServlet {
             return translations;
         }
 
-        private void setTranslations(final List<Translation> translations) {
+        private void setTranslations(List<Translation> translations) {
             this.translations = translations;
         }
     }
@@ -155,7 +149,7 @@ public class TranslateServlet {
             return language;
         }
 
-        private void setLanguage(final String language) {
+        private void setLanguage(String language) {
             this.language = language;
         }
 
