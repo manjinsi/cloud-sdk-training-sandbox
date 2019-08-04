@@ -30,6 +30,7 @@ Contains all application related to JUnit tests.
         - `npm start`
     - The mock-server is accessible on port 3000
     - Example: Access Business Partner OData service via http://localhost:3000/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_BusinessPartner
+    - Attention: The mock-server is not fully replacing S/4HANA. Limitations are descriped [here](https://sap.github.io/cloud-s4-sdk-book/pages/mock-odata.html).
 2. Run the Spring Boot Application with the following Environment variable option
     - Go to Run Configuration -> Environment -> New 
         - Name: destinations
