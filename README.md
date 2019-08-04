@@ -1,7 +1,16 @@
 # SAP Cloud SDK Training Sandbox
 ## Description
 This repository is created to conduct an SAP Cloud SDK training with the goal to implement a sample Business Partner Address Manager Application based on Spring Boot and the SAP Cloud SDK from SAP.
+
 It contains the structure and definition of one SAP Cloud SDK project with an skeleton application. This application will be enchanced by the participants during the training. 
+
+The developed application has the following business scope: 
+
+- Display buisness partners in a search list (fetching data from S/4HANA)
+- Display single partner detail page (fetching data from S/4HANA)
+- Add address information to business partner (add data to S/4HANA)
+- Update address information (update data to S/4HANA)
+- Delete address information from business partner (delete data to S/4HANA)
 ## Preparation
 Please setup the local development and infrastructure environment beforehand: 
 ### Tools
