@@ -49,10 +49,10 @@ public class BusinessPartnerController {
         
         Destination destination = DestinationAccessor.getDestination("ErpQueryEndpoint");
         
-        // TODO: Task 1 - Retrieve a list of business partners
+        // TODO: BusinessPartner Task 1 - Retrieve a list of business partners
         partners = service.getAllBusinessPartner().execute(destination.asHttp());
 
-        // TODO Task 2 - Add caching support to the call. Cache the data for 5 minutes.
+        // TODO BusinessPartner Task 2 - Add caching support to the call. Cache the data for 5 minutes.
         // Hint: com.sap.cloud.sdk.cloudplatform.resilience.ResilienceDecorator might help 
 //        ResilienceConfiguration resilienceConfiguration = ResilienceConfiguration.of(BusinessPartnerService.class)
 //                .cacheConfiguration(CacheConfiguration.of(Duration.ofMinutes(5)).withoutParameters());
@@ -60,7 +60,7 @@ public class BusinessPartnerController {
 //        partners = ResilienceDecorator.executeCallable(
 //                () -> service.getAllBusinessPartner().execute(destination.asHttp()), resilienceConfiguration);
         
-        // TODO Task 3 - Add a circuit breaker with a 30 seconds duration
+        // TODO BusinessPartner Task 3 - Add a circuit breaker with a 30 seconds duration
 //        ResilienceConfiguration resilienceConfiguration = ResilienceConfiguration.of(BusinessPartnerService.class)
 //                .cacheConfiguration(CacheConfiguration.of(Duration.ofMinutes(5)).withoutParameters())
 //                .circuitBreakerConfiguration(CircuitBreakerConfiguration.of().waitDuration(Duration.ofSeconds(30)));
@@ -69,7 +69,7 @@ public class BusinessPartnerController {
 //                () -> service.getAllBusinessPartner().execute(destination.asHttp()), resilienceConfiguration);
 
         
-        // TODO Task 4 - Select just the id, first and last name of the business partners, filter them by category = '1' and order them by last name ascending
+        // TODO BusinessPartner Task 4 - Select just the id, first and last name of the business partners, filter them by category = '1' and order them by last name ascending
 //        ResilienceConfiguration resilienceConfiguration = ResilienceConfiguration.of(BusinessPartnerService.class)
 //                .cacheConfiguration(CacheConfiguration.of(Duration.ofMinutes(5)).withoutParameters())
 //                .circuitBreakerConfiguration(CircuitBreakerConfiguration.of().waitDuration(Duration.ofSeconds(30)));
@@ -84,7 +84,7 @@ public class BusinessPartnerController {
 //                     .execute(destination.asHttp()),
 //                 resilienceConfiguration);
         
-        // TODO Task 5 Remove the throws definition from the method and handle the exceptions with io.vavr.control.Try
+        // TODO BusinessPartner Task 5 - Remove the throws definition from the method and handle the exceptions with io.vavr.control.Try
 //        partners = Try.of(
 //                () -> service.getAllBusinessPartner()
 //                    .select(BusinessPartner.BUSINESS_PARTNER,
@@ -106,9 +106,13 @@ public class BusinessPartnerController {
         }
         logger.info("Retrieving business partner with id {}", id);
         
+        BusinessPartner partner = null; 
+        
+        // TODO BusinessPartner Task 6 - Read one business partner by key and corresponding addresses
+        
         Destination destination = DestinationAccessor.getDestination("ErpQueryEndpoint");
         
-        BusinessPartner partner = service.getBusinessPartnerByKey(id)
+        partner = service.getBusinessPartnerByKey(id)
 				                .select(BusinessPartner.BUSINESS_PARTNER, 
 				                        BusinessPartner.LAST_NAME, 
 				                        BusinessPartner.FIRST_NAME,

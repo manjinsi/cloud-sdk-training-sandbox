@@ -36,9 +36,14 @@ public class AddressController {
 
         logger.info("Received post request to create address {}", address);
 
+        BusinessPartnerAddress addressCreated = null; 
+        
+        // TODO BusinessPartner Address Task 1 - Create business partner address
         Destination destination = DestinationAccessor.getDestination("ErpQueryEndpoint");
-        BusinessPartnerAddress addressCreated = service.createBusinessPartnerAddress(address)
+        
+        addressCreated = service.createBusinessPartnerAddress(address)
                 .execute(destination.asHttp());
+        
         return ResponseEntity.status(HttpStatus.CREATED).body(addressCreated);
     }
 
@@ -65,7 +70,7 @@ public class AddressController {
         logger.info("Received patch request to update address {}", addressToUpdate);
         try {
 
-//          //TODO: Task 3 - Implement business partner update query
+//          //TODO: BusinessPartner Address Task 2 - Implement business partner update query
             Destination destination = DestinationAccessor.getDestination("ErpQueryEndpoint");
             service.updateBusinessPartnerAddress(addressToUpdate).execute(destination.asHttp());
             return ResponseEntity.noContent().build();
@@ -90,7 +95,7 @@ public class AddressController {
 
         logger.info("Received delete request to delete address {}, {}", businessPartnerId, addressId);
         try {
-            // TODO: Task 3 - Implement business partner address delete query
+            // TODO: BusinessPartner Address Task 3 - Implement business partner address delete query
             Destination destination = DestinationAccessor.getDestination("ErpQueryEndpoint");
 
             BusinessPartnerAddress businessPartnerAddress = new BusinessPartnerAddress();
@@ -115,6 +120,7 @@ public class AddressController {
 
     private BusinessPartnerAddress createAddressToUpdate(String businessPartnerId, String addressId,
             BusinessPartnerAddress addressFromBody) {
+    	
         BusinessPartnerAddress addressToUpdate = BusinessPartnerAddress.builder().businessPartner(businessPartnerId)
                 .addressID(addressId).build();
         // Only change properties for which non-null values have been provided
