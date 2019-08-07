@@ -1,0 +1,6 @@
+erp:
+  default: "S4HANA"
+  systems:
+    - alias: "S4HANA"
+      uri: "http://localhost:3000"
+#      uri: "https://odata-mock-server-daring-emu.cfapps.eu10.hana.ondemand.com/"
