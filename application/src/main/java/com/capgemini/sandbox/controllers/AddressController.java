@@ -38,7 +38,7 @@ public class AddressController {
 
         BusinessPartnerAddress addressCreated = null; 
         
-        // TODO BusinessPartner Address Task 1 - Create business partner address
+        // TODO Address Task 1 - Create business partner address
         Destination destination = DestinationAccessor.getDestination("ErpQueryEndpoint");
         
         addressCreated = service.createBusinessPartnerAddress(address)
@@ -70,7 +70,7 @@ public class AddressController {
         logger.info("Received patch request to update address {}", addressToUpdate);
         try {
 
-//          //TODO: BusinessPartner Address Task 2 - Implement business partner update query
+//          //TODO:  Address Task 2 - Implement business partner update address operation
             Destination destination = DestinationAccessor.getDestination("ErpQueryEndpoint");
             service.updateBusinessPartnerAddress(addressToUpdate).execute(destination.asHttp());
             return ResponseEntity.noContent().build();
@@ -95,7 +95,7 @@ public class AddressController {
 
         logger.info("Received delete request to delete address {}, {}", businessPartnerId, addressId);
         try {
-            // TODO: BusinessPartner Address Task 3 - Implement business partner address delete query
+            // TODO: Address Task 3 - Implement business partner address delete operation
             Destination destination = DestinationAccessor.getDestination("ErpQueryEndpoint");
 
             BusinessPartnerAddress businessPartnerAddress = new BusinessPartnerAddress();
