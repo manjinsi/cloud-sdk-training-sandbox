@@ -90,6 +90,8 @@ public class AddressControllerTest {
      * @return Value of property AddressID of newly created instance
      */
     private String createAddress(String houseNumber) throws Exception{
+    	
+    	// TODO: Address Test Task 1 - Creates a new address via REST
         MvcResult result = new ThreadContextExecutor().execute(() -> mvc.perform(
                 post("/api/addresses")
                     .content(CREATE_BODY_TEMPLATE.replace("{bupaId}", BUPA_ID).replace("{houseNumber}", houseNumber))
@@ -108,7 +110,8 @@ public class AddressControllerTest {
     public void testDelete() throws Exception {
         // Create address to delete afterwards
         String addressId = createAddress("10");
-
+        
+        // TODO: Address Test Task 2 - Delete a address via REST
         // Delete the address
         new ThreadContextExecutor().execute(() -> mvc.perform(
                 delete("/api/addresses?businessPartnerId={bupaId}&addressId={addressId}", BUPA_ID, addressId))
@@ -122,7 +125,8 @@ public class AddressControllerTest {
     public void testUpdate() throws Exception {
         // Create address to update
         String addressId = createAddress("10");
-
+        
+        // TODO: Address Test Task 3 - Update address via REST
         new ThreadContextExecutor().execute(() -> mvc.perform(
                 patch("/api/addresses?businessPartnerId={bupaId}&addressId={addressId}", BUPA_ID, addressId)
                     .content(UPDATE_BODY_TEMPLATE.replace("{houseNumber}", "100"))

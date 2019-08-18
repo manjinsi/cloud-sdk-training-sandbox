@@ -83,17 +83,6 @@ public class BusinessPartnerController {
 //                     .orderBy(BusinessPartner.LAST_NAME, Order.ASC)
 //                     .execute(destination.asHttp()),
 //                 resilienceConfiguration);
-        
-        // TODO BusinessPartner Task 5 - Remove the throws definition from the method and handle the exceptions with io.vavr.control.Try
-//        partners = Try.of(
-//                () -> service.getAllBusinessPartner()
-//                    .select(BusinessPartner.BUSINESS_PARTNER,
-//                            BusinessPartner.LAST_NAME,
-//                            BusinessPartner.FIRST_NAME)
-//                    .filter(BusinessPartner.BUSINESS_PARTNER_CATEGORY.eq(CATEGORY_PERSON))
-//                    .orderBy(BusinessPartner.LAST_NAME, Order.ASC)
-//                    .execute(destination.asHttp()))
-//                .getOrElse(Collections.emptyList());
        
         return partners;
     }
@@ -108,7 +97,7 @@ public class BusinessPartnerController {
         
         BusinessPartner partner = null; 
         
-        // TODO BusinessPartner Task 6 - Read one business partner by key and corresponding addresses
+        // TODO BusinessPartner Task 5 - Read one business partner by key and corresponding addresses
         
         Destination destination = DestinationAccessor.getDestination("ErpQueryEndpoint");
         

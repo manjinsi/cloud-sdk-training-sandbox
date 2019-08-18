@@ -52,6 +52,7 @@ public class BusinessPartnerControllerTest {
 
     @Test
     public void testGetSingle() {
+    	// TODO: BusinessPartner Test Task 1 - Test reading single business partner via REST
         new ThreadContextExecutor().execute(() -> mvc.perform(
                 get("/api/business-partners?id={id}", BUPA_ID))
                 .andExpect(status().isOk())
