@@ -53,11 +53,5 @@ public class BusinessPartnerControllerTest {
     @Test
     public void testGetSingle() {
     	// TODO: BusinessPartner Test Task 1 - Test reading single business partner via REST
-        new ThreadContextExecutor().execute(() -> mvc.perform(
-                get("/api/business-partners?id={id}", BUPA_ID))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
-                .andExpect(jsonPath("$.BusinessPartner").value(allOf(not(isEmptyOrNullString()), equalTo(BUPA_ID))))
-                .andExpect(jsonPath("$.to_BusinessPartnerAddress").value(hasSize(greaterThan(0)))));
     }
 }

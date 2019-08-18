@@ -38,11 +38,7 @@ public class AddressController {
 
         BusinessPartnerAddress addressCreated = null; 
         
-        // TODO Address Task 1 - Create business partner address
-        Destination destination = DestinationAccessor.getDestination("ErpQueryEndpoint");
-        
-        addressCreated = service.createBusinessPartnerAddress(address)
-                .execute(destination.asHttp());
+        //TODO Address Task 1 - Create business partner address
         
         return ResponseEntity.status(HttpStatus.CREATED).body(addressCreated);
     }
@@ -70,9 +66,7 @@ public class AddressController {
         logger.info("Received patch request to update address {}", addressToUpdate);
         try {
 
-//          //TODO:  Address Task 2 - Implement business partner update address operation
-            Destination destination = DestinationAccessor.getDestination("ErpQueryEndpoint");
-            service.updateBusinessPartnerAddress(addressToUpdate).execute(destination.asHttp());
+        	//TODO:  Address Task 2 - Implement business partner update address operation
             return ResponseEntity.noContent().build();
         } catch (Exception e) {
             logger.error("Error while updating address {} in SAP S/4HANA.", addressToUpdate, e);
@@ -96,14 +90,6 @@ public class AddressController {
         logger.info("Received delete request to delete address {}, {}", businessPartnerId, addressId);
         try {
             // TODO: Address Task 3 - Implement business partner address delete operation
-            Destination destination = DestinationAccessor.getDestination("ErpQueryEndpoint");
-
-            BusinessPartnerAddress businessPartnerAddress = new BusinessPartnerAddress();
-            businessPartnerAddress.setBusinessPartner(businessPartnerId);
-            businessPartnerAddress.setAddressID(addressId);
-
-            service.deleteBusinessPartnerAddress(businessPartnerAddress).execute(destination.asHttp());
-
             return ResponseEntity.noContent().build();
         } catch (Exception e) {
             logger.error("Error while deleting address {} of business partner {} in SAP S/4HANA.", addressId,

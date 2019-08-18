@@ -47,42 +47,14 @@ public class BusinessPartnerController {
         logger.info("Retrieving all business partners");
         List<BusinessPartner> partners = new ArrayList<>();
         
-        Destination destination = DestinationAccessor.getDestination("ErpQueryEndpoint");
-        
-        // TODO: BusinessPartner Task 1 - Retrieve a list of business partners
-        partners = service.getAllBusinessPartner().execute(destination.asHttp());
+        // TODO BusinessPartner Task 1 - Retrieve a list of business partners
 
         // TODO BusinessPartner Task 2 - Add caching support to the call. Cache the data for 5 minutes.
         // Hint: com.sap.cloud.sdk.cloudplatform.resilience.ResilienceDecorator might help 
-//        ResilienceConfiguration resilienceConfiguration = ResilienceConfiguration.of(BusinessPartnerService.class)
-//                .cacheConfiguration(CacheConfiguration.of(Duration.ofMinutes(5)).withoutParameters());
-//        
-//        partners = ResilienceDecorator.executeCallable(
-//                () -> service.getAllBusinessPartner().execute(destination.asHttp()), resilienceConfiguration);
         
         // TODO BusinessPartner Task 3 - Add a circuit breaker with a 30 seconds duration
-//        ResilienceConfiguration resilienceConfiguration = ResilienceConfiguration.of(BusinessPartnerService.class)
-//                .cacheConfiguration(CacheConfiguration.of(Duration.ofMinutes(5)).withoutParameters())
-//                .circuitBreakerConfiguration(CircuitBreakerConfiguration.of().waitDuration(Duration.ofSeconds(30)));
-//
-//        partners = ResilienceDecorator.executeCallable(
-//                () -> service.getAllBusinessPartner().execute(destination.asHttp()), resilienceConfiguration);
 
-        
         // TODO BusinessPartner Task 4 - Select just the id, first and last name of the business partners, filter them by category = '1' and order them by last name ascending
-//        ResilienceConfiguration resilienceConfiguration = ResilienceConfiguration.of(BusinessPartnerService.class)
-//                .cacheConfiguration(CacheConfiguration.of(Duration.ofMinutes(5)).withoutParameters())
-//                .circuitBreakerConfiguration(CircuitBreakerConfiguration.of().waitDuration(Duration.ofSeconds(30)));
-//
-//        partners = ResilienceDecorator.executeCallable(
-//                 () -> service.getAllBusinessPartner()
-//                     .select(BusinessPartner.BUSINESS_PARTNER,
-//                             BusinessPartner.LAST_NAME,
-//                             BusinessPartner.FIRST_NAME)
-//                     .filter(BusinessPartner.BUSINESS_PARTNER_CATEGORY.eq(CATEGORY_PERSON))
-//                     .orderBy(BusinessPartner.LAST_NAME, Order.ASC)
-//                     .execute(destination.asHttp()),
-//                 resilienceConfiguration);
        
         return partners;
     }
@@ -98,26 +70,6 @@ public class BusinessPartnerController {
         BusinessPartner partner = null; 
         
         // TODO BusinessPartner Task 5 - Read one business partner by key and corresponding addresses
-        
-        Destination destination = DestinationAccessor.getDestination("ErpQueryEndpoint");
-        
-        partner = service.getBusinessPartnerByKey(id)
-				                .select(BusinessPartner.BUSINESS_PARTNER, 
-				                        BusinessPartner.LAST_NAME, 
-				                        BusinessPartner.FIRST_NAME,
-				                        BusinessPartner.IS_MALE, 
-				                        BusinessPartner.IS_FEMALE, 
-				                        BusinessPartner.CREATION_DATE,
-				                        BusinessPartner.MIDDLE_NAME, 
-				                        BusinessPartner.SEARCH_TERM1,
-				                        BusinessPartner.TO_BUSINESS_PARTNER_ADDRESS.select(BusinessPartnerAddress.BUSINESS_PARTNER,
-				                                BusinessPartnerAddress.ADDRESS_ID, 
-				                                BusinessPartnerAddress.COUNTRY,
-				                                BusinessPartnerAddress.POSTAL_CODE, 
-				                                BusinessPartnerAddress.CITY_NAME,
-				                                BusinessPartnerAddress.STREET_NAME, 
-				                                BusinessPartnerAddress.HOUSE_NUMBER))
-				                .execute(destination.asHttp());
 
         return partner;
     }

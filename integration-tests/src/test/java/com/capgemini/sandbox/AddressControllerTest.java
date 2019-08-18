@@ -92,15 +92,7 @@ public class AddressControllerTest {
     private String createAddress(String houseNumber) throws Exception{
     	
     	// TODO: Address Test Task 1 - Creates a new address via REST
-        MvcResult result = new ThreadContextExecutor().execute(() -> mvc.perform(
-                post("/api/addresses")
-                    .content(CREATE_BODY_TEMPLATE.replace("{bupaId}", BUPA_ID).replace("{houseNumber}", houseNumber))
-                    .contentType(MediaType.APPLICATION_JSON_UTF8))
-                .andExpect(status().isCreated())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
-                .andExpect(jsonPath("$.BusinessPartner").value(equalTo(BUPA_ID)))
-                .andExpect(jsonPath("$.AddressID").value(not(isEmptyOrNullString())))
-                .andReturn());
+        MvcResult result = null;
         
         String addressId = mapper.readValue(result.getResponse().getContentAsByteArray(), BusinessPartnerAddress.class).getAddressID();
         return addressId;
@@ -112,10 +104,6 @@ public class AddressControllerTest {
         String addressId = createAddress("10");
         
         // TODO: Address Test Task 2 - Delete address via REST
-        // Delete the address
-        new ThreadContextExecutor().execute(() -> mvc.perform(
-                delete("/api/addresses?businessPartnerId={bupaId}&addressId={addressId}", BUPA_ID, addressId))
-                .andExpect(status().isNoContent()));
         
         // Verify just deleted address cannot be found anymore
         assertThat(getAddress(BUPA_ID, addressId)).isNull();
@@ -127,11 +115,6 @@ public class AddressControllerTest {
         String addressId = createAddress("10");
         
         // TODO: Address Test Task 3 - Update address via REST
-        new ThreadContextExecutor().execute(() -> mvc.perform(
-                patch("/api/addresses?businessPartnerId={bupaId}&addressId={addressId}", BUPA_ID, addressId)
-                    .content(UPDATE_BODY_TEMPLATE.replace("{houseNumber}", "100"))
-                    .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-                .andExpect(status().isNoContent()));
         
         // Verify that address contains new value also when retrieved again
         BusinessPartnerAddress addressUpdated = getAddress(BUPA_ID, addressId);
