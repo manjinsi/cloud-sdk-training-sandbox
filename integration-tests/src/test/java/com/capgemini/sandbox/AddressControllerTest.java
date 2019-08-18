@@ -111,7 +111,7 @@ public class AddressControllerTest {
         // Create address to delete afterwards
         String addressId = createAddress("10");
         
-        // TODO: Address Test Task 2 - Delete a address via REST
+        // TODO: Address Test Task 2 - Delete address via REST
         // Delete the address
         new ThreadContextExecutor().execute(() -> mvc.perform(
                 delete("/api/addresses?businessPartnerId={bupaId}&addressId={addressId}", BUPA_ID, addressId))
