@@ -12,8 +12,4 @@ applications:
     TARGET_RUNTIME: main
     SPRING_PROFILES_ACTIVE: 'cloud'
     JBP_CONFIG_SAPJVM_MEMORY_SIZES: 'metaspace:128m..'
-#  services:
-#  - my-application-logs
-#  - my-xsuaa
-#  - my-destination
-#  - my-connectivity
+    destinations: '[{name: "ErpQueryEndpoint", url: "https://url.hana.ondemand.com/", username: "DUMMY", password: "dummy"}]'
