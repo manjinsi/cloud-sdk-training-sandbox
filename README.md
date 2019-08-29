@@ -40,8 +40,10 @@ Contains all application related to JUnit tests.
     - The mock-server is accessible on port 3000
     - Example: Access Business Partner OData service via http://localhost:3000/sap/opu/odata/sap/API_BUSINESS_PARTNER/A_BusinessPartner
     - Attention: The mock-server is not fully replacing S/4HANA. Limitations are descriped [here](https://sap.github.io/cloud-s4-sdk-book/pages/mock-odata.html).
-2. Run the Spring Boot Application with the following Environment variable option
-    - Go to Run Configuration -> Environment -> New 
+2. Run the Spring Boot Application with the following option
+    - Go to Run Configuration -> Java Application -> Right Click -> New
+    - Select the application project and the main class is com.capgemini.sandbox.Application
+    - Go to Environment -> New 
         - Name: destinations
         - Value: [{"name"="ErpQueryEndpoint", "url"="http://localhost:3000"}]
 3. The UI Frontend can be reached under this link
