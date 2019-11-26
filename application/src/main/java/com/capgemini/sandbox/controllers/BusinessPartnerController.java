@@ -59,16 +59,16 @@ public class BusinessPartnerController {
 //        
 //        partners = ResilienceDecorator.executeCallable(
 //                () -> service.getAllBusinessPartner().execute(destination.asHttp()), resilienceConfiguration);
-        
-        // TODO BusinessPartner Task 3 - Add a circuit breaker with a 30 seconds duration
+
+
+        // TODO BusinessPartner Task 3 - Add a circuit breaker with a 10 seconds duration
 //        ResilienceConfiguration resilienceConfiguration = ResilienceConfiguration.of(BusinessPartnerService.class)
 //                .cacheConfiguration(CacheConfiguration.of(Duration.ofMinutes(5)).withoutParameters())
-//                .circuitBreakerConfiguration(CircuitBreakerConfiguration.of().waitDuration(Duration.ofSeconds(30)));
+//                .circuitBreakerConfiguration(CircuitBreakerConfiguration.of().closedBufferSize(4).halfOpenBufferSize(2).waitDuration(Duration.ofSeconds(10)));
 //
 //        partners = ResilienceDecorator.executeCallable(
 //                () -> service.getAllBusinessPartner().execute(destination.asHttp()), resilienceConfiguration);
 
-        
         // TODO BusinessPartner Task 4 - Select just the id, first and last name of the business partners, filter them by category = '1' and order them by last name ascending
 //        ResilienceConfiguration resilienceConfiguration = ResilienceConfiguration.of(BusinessPartnerService.class)
 //                .cacheConfiguration(CacheConfiguration.of(Duration.ofMinutes(5)).withoutParameters())

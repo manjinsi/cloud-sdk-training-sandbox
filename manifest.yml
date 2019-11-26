@@ -2,7 +2,7 @@
 applications:
 
 - name: cloud-sdk-sandbox
-  memory: 1024M
+  memory: 768M
   timeout: 300
   random-route: true
   path: application/target/cloud-sdk-sandbox-application.jar
